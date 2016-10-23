@@ -9,7 +9,7 @@
 folder!
 
 ## Install MPV configs
-1. Remove (or rename) yout ~/.config/mpv folder
+1. Remove (or rename) your ~/.config/mpv folder
 2. link the mpv folder to ~/.config/mpv
 
 All custom plugins/themes/whatever are in the clone/custom folder.
