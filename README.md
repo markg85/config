@@ -12,4 +12,9 @@ folder!
 1. Remove (or rename) your ~/.config/mpv folder
 2. link the mpv folder to ~/.config/mpv
 
+## Install NVIM configs
+1. Remove (or rename) your ~/.config/mpv folder
+2. Link the nvim folder to ~/.config/mpv
+3. Run nvim and type ":PlugInstall" to install all the plugins.
+
 All custom plugins/themes/whatever are in the clone/custom folder.
