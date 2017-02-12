@@ -14,8 +14,10 @@ Plug 'arecarn/crunch.vim'
 Plug 'tpope/vim-liquid'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-clang', { 'for': 'cpp' }
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'zchee/deoplete-clang', { 'for': 'cpp' }
+Plug 'PeterRincker/vim-argumentative'
+Plug 'pangloss/vim-javascript'
 
 " Plug 'valloric/youcompleteme'
 
