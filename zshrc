@@ -45,13 +45,7 @@ function upload()
 # paste content from pipe
 function paste()
 {
-  pasteStyle=$1
-
-  if [ -z "$1" ]; then
-    pasteStyle="cpp";
-  fi
- 
-  curl -X POST -H "Content-Type: text/plain" --data-binary @- http://p.sc2.nl/${pasteStyle}
+  curl -X POST -H "Content-Type: text/plain" --data-binary @- http://p.sc2.nl/${1:=cpp}
 }
 
 # find files
