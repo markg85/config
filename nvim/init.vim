@@ -129,3 +129,6 @@ set sidescroll=1
 
 " == .VUE files highlight as HTML
 au BufReadPost *.vue set syntax=html
+
+" Clipboard settings
+set clipboard+=unnamedplus
