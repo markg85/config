@@ -45,13 +45,13 @@ function upload()
 # paste content from pipe
 function paste()
 {
-   curl -X POST -H "Content-Type: text/plain" --data-binary @$1- http://p.sc2.nl/cpp
-}
+  pasteStyle=$1
 
-# and a paste with diff set.
-function pastediff()
-{
-   curl -X POST -H "Content-Type: text/plain" --data-binary @$1- http://p.sc2.nl/diff
+  if [ -z "$1" ]; then
+    pasteStyle="cpp";
+  fi
+ 
+  curl -X POST -H "Content-Type: text/plain" --data-binary @- http://p.sc2.nl/${pasteStyle}
 }
 
 # find files
