@@ -36,6 +36,24 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 export ZLS_COLORS=$LS_COLORS
 
+# upload a file to paste.sc2.nl
+function upload()
+{
+    curl -F data=@$1 http://p.sc2.nl/data
+}
+
+# paste content from pipe
+function paste()
+{
+   curl -X POST -H "Content-Type: text/plain" --data-binary @$1- http://p.sc2.nl/cpp
+}
+
+# and a paste with diff set.
+function pastediff()
+{
+   curl -X POST -H "Content-Type: text/plain" --data-binary @$1- http://p.sc2.nl/diff
+}
+
 # find files
 # example: ff "*.cpp"
 function ff()
