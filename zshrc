@@ -48,6 +48,22 @@ function paste()
   curl -X POST -H "Content-Type: text/plain" --data-binary @- http://p.sc2.nl/${1:=cpp}
 }
 
+# folderSize function, returns the size for each folder in the current directory.
+# If used like "folderSize 10G", it will only show all folders with 10G or more.
+# See du documentation for threshold.
+function folderSize()
+{
+  THRESHOLD=""
+
+  if [ -n "$1" ]; then
+    THRESHOLD="--threshold=${1}"
+  fi
+
+  for file in $(ls -d */); do
+    du -hs $file $THRESHOLD 2>/dev/null
+  done
+}
+
 # find files
 # example: ff "*.cpp"
 function ff()
