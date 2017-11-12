@@ -86,7 +86,7 @@ _PATH="%{$fg_bold[white]%}%~%{$reset_color%}"
 
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n"
-  _LIBERTY="%{$fg[red]%}#"
+  _LIBERTY="%F{196}#"
 else
 #  _USERNAME="%{$fg_bold[white]%}%n"
   _USERNAME="%F{229}%n"
