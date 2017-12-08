@@ -35,8 +35,7 @@ set list
 set cursorline
 set number
 
-let g:gitgutter_sign_column_always = 1
-
+set signcolumn=yes
 let g:ycm_confirm_extra_conf = 0
 
 
@@ -117,9 +116,9 @@ autocmd CompleteDone * pclose!
 
 
 " deoplete-clang opions
-let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
-let g:deoplete#sources#clang#clang_header ="/usr/include/clang/"
-let g:deoplete#sources#clang#std#cpp = 'c++14'
+" let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
+" let g:deoplete#sources#clang#clang_header ="/usr/include/clang/"
+" let g:deoplete#sources#clang#std#cpp = 'c++14'
 
 " ================ Scrolling ========================
 
