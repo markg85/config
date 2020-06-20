@@ -5,8 +5,11 @@ export ZSH=$HOME/$MARK_CONFIGS_FOLDER/oh-my-zsh
 
 source $ZSH/plugins/
 
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MODE='awesome-fontconfig'
+
 # ZSH theme
-ZSH_THEME="bureau"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -30,7 +33,7 @@ plugins=(git zsh-256color zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=~/kde/src/kdesrc-build:$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -39,13 +42,20 @@ export ZLS_COLORS=$LS_COLORS
 # upload a file to paste.sc2.nl
 function upload()
 {
-    curl -F data=@$1 http://p.sc2.nl/data
+  curl -s -X POST -F data=@$1 --compressed https://p.sc2.nl/data
 }
 
 # paste content from pipe
 function paste()
 {
-  curl -X POST -H "Content-Type: text/plain" --data-binary @- http://p.sc2.nl/${1:=cpp}
+  curl -s -X POST -H "Content-Type: text/plain" --data-binary @- --compressed https://p.sc2.nl/api/${1:=cpp} | getJsonVal "['url']" | awk 1
+}
+
+# I don't know python!
+# Source: https://stackoverflow.com/a/21595107
+function getJsonVal()
+{ 
+  python -c "import json,sys;sys.stdout.write(json.dumps(json.load(sys.stdin)$1).strip('\"'))";
 }
 
 # folderSize function, returns the size for each folder in the current directory.
