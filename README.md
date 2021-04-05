@@ -4,9 +4,10 @@
 1. Clone this repository anywhere you want.
 2. git submodule init
 3. git submodule update --depth 1 --remote
-4. in your home folder, link ".zshrc" to your cloned path/zshrc
+4. in your home folder, link ".zshrc" to your cloned path/zshrc `ln -s configs_git/zshrc .zshrc`
 5. edit ~/.zshrc (which is the same file as "zshrc in your cloned path) and adjust the MARK_CONFIGS_FOLDER define accordingly. Note that this folder is relative to your home 
 folder!
+6. Change the shell to ZSH `chsh -s /bin/zsh`
 
 ## Install MPV configs
 1. Remove (or rename) your ~/.config/mpv folder
