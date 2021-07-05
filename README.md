@@ -9,6 +9,14 @@
 folder!
 6. Change the shell to ZSH `chsh -s /bin/zsh`
 
+## Install gitconfig
+1. open your `~/.gitconfig`
+2. Add the following:
+```
+[include]
+    path = <path_to_this_repo_clone>/gitconifg
+```
+
 ## Install MPV configs
 1. Remove (or rename) your ~/.config/mpv folder
 2. link the mpv folder to ~/.config/mpv

@@ -1,0 +1,68 @@
+[url "git@code.sc2.nl"]
+    insteadOf = sc2:
+[url "https://github.com/"]
+    insteadOf = github:
+[url "git@github.com:"]
+    pushInsteadOf = https://github.com/
+    pushInsteadOf = git://github.com/
+[url "git@git.kde.org:"]
+    pushInsteadOf = kde:
+[url "git@code.sc2.nl:"]
+    pushInsteadOf = https://code.sc2.nl/
+[url "https://anongit.kde.org/"]
+    insteadOf = kde:
+[core]
+    editor = nano -w
+    pager = less -FRSX
+    autocrlf = input
+[push]
+    default = tracking
+    followTags = true
+
+[alias]
+    # much pretier git log
+    pl = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
+    
+    # shorter version to show local branches
+    bl = branch -l
+
+    # Upload the diff to p.sc2.nl as diff
+    diffup = !sh -c 'git diff "$@" | curl -H "Content-Type: text/plain" -X POST --data-urlencode @- https://p.sc2.nl/diff' -
+
+    # apply a paste from p.sc2.nl. Usage example: "git applypaste 3eWr42"
+    applypaste = !sh -c 'curl https://p.sc2.nl/"$@"/raw | git apply' -
+
+    # shorter checkout version. Also helps when you were familliar with SVN.
+    co = checkout
+
+    # Shows diff of the comitted files.
+    diffc = diff --cached
+
+    # Get the parent branch.
+    parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'"
+
+    # Update the current branch with the parent
+    update = "!git rebase $(git parent)"
+
+    # Get the current branch name (not so useful in itself, but used in
+    # other aliases)
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+
+    # Push the current branch to the remote "origin", and set it to track
+    # the upstream branch
+    publish = "!git push -u origin $(git branch-name)"
+
+    # Delete the remote version of the current branch
+    unpublish = "!git push origin :$(git branch-name)"
+
+[color]
+    ui = auto
+[pull]
+    rebase = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[rebase]
+    stat = true
+[url "https://anongit.kde.org/"]
+    insteadOf = kde:
