@@ -36,7 +36,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_CUSTOM=$HOME/$MARK_CONFIGS_FOLDER/custom
 
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-256color zsh-syntax-highlighting)
+plugins=(git zsh-256color zsh-syntax-highlighting docker)
 
 # User configuration
 
