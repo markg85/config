@@ -76,7 +76,7 @@ function folderSize()
     THRESHOLD="--threshold=${1}"
   fi
 
-  for file in */; do
+  for file in */ .*/ ; do
     du -hs $file $THRESHOLD 2>/dev/null
   done
 }
