@@ -109,6 +109,9 @@ alias fif='noglob fif'
 #alias ls='ls++'
 alias kcachelatest='kcachegrind $(ls callgrind* -rt | tail -n 1)'
 
+# alias for file encryption
+alias encrypt_aes='bash ~/$MARK_CONFIGS_FOLDER/custom/encrypt_aes.sh'
+
 # Command not found for Arch Linux. Tries to find the package that contains the command.
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
@@ -127,3 +130,6 @@ zstyle ':completion:*' rehash true
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/$MARK_CONFIGS_FOLDER/p10k.zsh ]] || source $HOME/$MARK_CONFIGS_FOLDER/p10k.zsh
+
+# Make go behave
+export GO111MODULE=off #https://stackoverflow.com/questions/66284870/go-get-not-downloading-to-src-folder
