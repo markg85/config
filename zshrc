@@ -55,7 +55,14 @@ function upload()
 # paste content from pipe
 function paste()
 {
-  curl -s -X POST -H "Content-Type: text/plain" --data-binary @- --compressed https://p.sc2.nl/api/${1:=cpp} | getJsonVal "['url']" | awk 1
+  URLPART=""
+  if [ "$#" -lt 2 ]; then
+    URLPART=${1:=cpp}
+  elif [ "$#" -lt 3 ]; then
+    URLPART=${1:=}/${2:=cpp}
+  fi
+
+  curl -s -X POST -H "Content-Type: text/plain" --data-binary @- --compressed https://p.sc2.nl/api/${URLPART} | getJsonVal "['url']" | awk 1
 }
 
 # I don't know python!
