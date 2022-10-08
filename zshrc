@@ -107,6 +107,7 @@ function fif()
 }
 
 alias grep='grep --color=auto -n'
+alias yay='yay --combinedupgrade'
 alias cppgrep='noglob grep -Rin --color=auto --include=\*.{cpp,c,h,qml,js}'
 alias ff='noglob ff'
 alias fif='noglob fif'
