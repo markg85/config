@@ -114,6 +114,7 @@ alias fif='noglob fif'
 #alias ls='ls --color=always'
 #alias ls='ls++'
 alias kcachelatest='kcachegrind $(ls callgrind* -rt | tail -n 1)'
+alias ip='ip -c'
 
 # alias for file encryption
 alias encrypt_aes='bash ~/$MARK_CONFIGS_FOLDER/custom/encrypt_aes.sh'
