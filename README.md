@@ -17,7 +17,7 @@ folder!
     path = <path_to_this_repo_clone>/gitconifg
 ```
 ## Install nanorc
-1. `ln -s configs_git/nanorc .nanorc
+1. `ln -s configs_git/nanorc .nanorc`
 
 ## Install MPV configs
 1. Remove (or rename) your ~/.config/mpv folder
