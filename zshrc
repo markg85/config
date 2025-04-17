@@ -10,6 +10,9 @@ export MARK_CONFIGS_FOLDER=configs_git
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/$MARK_CONFIGS_FOLDER/oh-my-zsh
 
+# Set COLORTERM, makes some apps output nice colors (like ls), might already be set
+export COLORTERM=truecolor
+
 source $ZSH/plugins/
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
