@@ -35,6 +35,9 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Magic function (paste) is garbage!
+DISABLE_MAGIC_FUNCTIONS="true"
+
 # custom folder location
 ZSH_CUSTOM=$HOME/$MARK_CONFIGS_FOLDER/custom
 
