@@ -18,8 +18,13 @@ source $ZSH/plugins/
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
+
+source $HOME/$MARK_CONFIGS_FOLDER/custom/zsh_theme_handler.sh
 # ZSH theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME=
+#ZSH_THEME=linuxonly
+#ZSH_THEME=agnoster
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
