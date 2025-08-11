@@ -55,7 +55,19 @@ export ZLS_COLORS=$LS_COLORS
 # upload a file to paste.sc2.nl
 function upload()
 {
-  curl -s -X POST -F data=@$1 --compressed https://p.sc2.nl/data
+  # Capture the URL from the curl command into a variable
+  url=$(curl -s -X POST -F data=@"${1:--}" --compressed https://p.sc2.nl/data -w "\n")
+
+  # Print the URL to the terminal
+  echo "URL: ${url}"
+
+  # Check if qrencode is installed
+  if command -v qrencode &> /dev/null; then
+    # Generate and display the QR code in the terminal
+    qrencode -t UTF8 "${url}"
+  else
+    echo "qrencode is not installed. Please install it to generate QR codes."
+  fi
 }
 
 # paste content from pipe
@@ -89,7 +101,7 @@ function folderSize()
     THRESHOLD="--threshold=${1}"
   fi
 
-  du -hs $(ls -A) $THRESHOLD
+  du -h --max-depth=1 $THRESHOLD 2> /dev/null
 }
 
 # find files
@@ -112,9 +124,38 @@ function fif()
     fi
 }
 
+# mediaserver play
+function msp()
+{
+    node --no-warnings=ExperimentalWarning ~/GitProjects/mediaserveripfs/index.js play "$1" --dump ~/dump.json --private-key ~/.ssh/x25519-priv-mark.pem
+#    node --no-warnings=ExperimentalWarning ~/GitProjects/mediaserveripfs/index.js play "$1" --dump ~/dump.json --public-key ~/.ssh/x25519-pub-seedbox.pem --private-key ~/.ssh/x25519-priv-mark.pem
+}
+
+function mediaserver()
+{
+    node --no-warnings=ExperimentalWarning ~/GitProjects/mediaserveripfs/index.js $@ --dump ~/dump.json --private-key ~/.ssh/x25519-priv-mark.pem
+#    node --no-warnings=ExperimentalWarning ~/GitProjects/mediaserveripfs/index.js $@ --dump ~/dump.json
+}
+
+function mse()
+{
+    COMMAND=$(node /home/mark/GitProjects/mediaserveripfs/index.js "$1" QmPBKKQ5pQSqZixe1YaUpb5DEJRfAXFmpUVW9vZ9KE7czP)
+    if [[ $COMMAND ]]; then
+        mpv_decrypt_args $COMMAND
+    else
+        echo ""
+    fi
+}
+
+
+function ipfs_save()
+{
+    ipfs get $1 -o $1
+}
+
 alias grep='grep --color=auto -n'
 alias yay='yay --combinedupgrade'
-alias cppgrep='noglob grep -Rin --color=auto --include=\*.{cpp,c,h,qml,js}'
+alias cppgrep='noglob grep -Rin --color=auto --include=\*.{cpp,c,cc,cxx,h,qml,js}'
 alias ff='noglob ff'
 alias fif='noglob fif'
 #alias ls='ls --color=always'
@@ -125,8 +166,14 @@ alias ip='ip -c'
 # alias for file encryption
 alias encrypt_aes='bash ~/$MARK_CONFIGS_FOLDER/custom/encrypt_aes.sh'
 
+# alias for a simple jq wrapper to simplify jq usage
+alias jqw='bash ~/$MARK_CONFIGS_FOLDER/custom/jqw.sh'
+
+# alias to help with mpv decrypt arguments.
+alias mpv_decrypt_args='bash ~/$MARK_CONFIGS_FOLDER/custom/mpv_decrypt_args.sh'
+
 # Command not found for Arch Linux. Tries to find the package that contains the command.
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ ! -f /usr/share/doc/pkgfile/command-not-found.zsh ]] || source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # highlight the typed text in tab completion.
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'; 
@@ -143,6 +190,3 @@ zstyle ':completion:*' rehash true
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/$MARK_CONFIGS_FOLDER/p10k.zsh ]] || source $HOME/$MARK_CONFIGS_FOLDER/p10k.zsh
-
-# Make go behave
-export GO111MODULE=off #https://stackoverflow.com/questions/66284870/go-get-not-downloading-to-src-folder
