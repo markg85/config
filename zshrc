@@ -51,11 +51,16 @@ plugins=(git zsh-256color zsh-syntax-highlighting docker)
 
 # User configuration
 
-export PATH=~/kde/src/kdesrc-build:$HOME/bin:/usr/local/bin:$PATH
+export PATH=~/kde/src/kdesrc-build:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 export ZLS_COLORS=$LS_COLORS
+
+function folderSize()
+{
+    $HOME/$MARK_CONFIGS_FOLDER/custom/folderSize.sh "$@"
+}
 
 # upload a file to paste.sc2.nl
 function upload()
@@ -93,20 +98,6 @@ function paste()
 function getJsonVal()
 { 
   python -c "import json,sys;sys.stdout.write(json.dumps(json.load(sys.stdin)$1).strip('\"'))";
-}
-
-# folderSize function, returns the size for each folder in the current directory.
-# If used like "folderSize 10G", it will only show all folders with 10G or more.
-# See du documentation for threshold.
-function folderSize()
-{
-  THRESHOLD=""
-
-  if [ -n "$1" ]; then
-    THRESHOLD="--threshold=${1}"
-  fi
-
-  du -h --max-depth=1 $THRESHOLD 2> /dev/null
 }
 
 # find files
